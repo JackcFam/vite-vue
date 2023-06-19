@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import ProductItem from "./ProductItem.vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
@@ -133,6 +133,8 @@ const route = useRoute();
 store.commit("products/SET_DATA_PRODUCT", data);
 const productList = ref(data);
 console.log(route.path);
+const productss = computed(() => store.state.products.productList)
+console.log('productss', productss.value);
 </script>
 
 <style lang="scss" scoped></style>
