@@ -26,7 +26,7 @@
 import { computed, ref } from "vue";
 import ProductItem from "./ProductItem.vue";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import sp1 from "@/assets/images/sp1.webp";
 import sp2 from "@/assets/images/sp2.webp";
 import sp3 from "@/assets/images/sp3.webp";
@@ -130,6 +130,7 @@ console.log(productData.doubleCount); // Truy cập getter trong store
 console.log(productData.name);
 const store = useStore();
 const route = useRoute();
+const router = useRouter();
 store.commit("products/SET_DATA_PRODUCT", data);
 const productList = ref(data);
 console.log(route.path);
