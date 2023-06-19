@@ -1,7 +1,8 @@
 import {defineStore} from 'pinia'
-export const useProductStore = defineStore('counter', {
+export const useProductStore = defineStore('product', {
     state: () => ({
-        product: []
+        product: [],
+        name: 'hello'
     }),
 
     getters: {
@@ -10,10 +11,15 @@ export const useProductStore = defineStore('counter', {
     
     actions: {
         increment() {
+            //1 giá trị thay đổi thì ta dùng luôn this.
             this.product.filter(e => e.name.length > 10)
         },
         logs() {
-            console.log(this.product);
+            // sử dụng $patch khi có nhiều sự thay đổi
+            this.$patch((state) =>{
+                state.product = state.product.reverse()
+                state.name =  'aa'
+              })
         },
     }
 })
