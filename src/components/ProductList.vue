@@ -126,6 +126,8 @@ console.log('fsdafdsafd',productData.product);
 productData.logs(); // Gọi đến action trong store
 console.log(productData.product); // Truy cập state trong store
 console.log(productData.doubleCount); // Truy cập getter trong store
+
+console.log(productData.name);
 const store = useStore();
 const route = useRoute();
 store.commit("products/SET_DATA_PRODUCT", data);
