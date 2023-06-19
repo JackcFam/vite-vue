@@ -2,7 +2,11 @@
   <div class="container mx-auto">
     <div class="flex items-center gap-2">
       <router-link to="/cart" class="font-bold">giỏ hàng</router-link>
-      <router-link :to="{name: 'Detail', params: { id: '1233213' } }" class="font-bold">chi tiết</router-link>
+      <router-link
+        :to="{ name: 'Detail', params: { id: '1233213' } }"
+        class="font-bold"
+        >chi tiết</router-link
+      >
     </div>
 
     <h2 class="text-center w-full text-3xl font-bold text-blue-500">
@@ -19,7 +23,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import ProductItem from "./ProductItem.vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
@@ -31,6 +35,9 @@ import sp5 from "@/assets/images/sp5.webp";
 import sp6 from "@/assets/images/sp6.webp";
 import sp7 from "@/assets/images/sp7.webp";
 import sp8 from "@/assets/images/sp8.webp";
+
+//pinia
+import { useProductStore } from "@/stores/product.js";
 
 const data = [
   {
@@ -109,9 +116,19 @@ const data = [
     quantityInStock: 7,
   },
 ];
+
+const productData = useProductStore();
+
+productData.increment(); // Gọi đến action trong store
+productData.product = data; // Thay đổi trực tiếp dữ liệu trong store
+
+console.log('fsdafdsafd',productData.product);
+productData.logs(); // Gọi đến action trong store
+console.log(productData.product); // Truy cập state trong store
+console.log(productData.doubleCount); // Truy cập getter trong store
 const store = useStore();
 const route = useRoute();
-store.commit('products/SET_DATA_PRODUCT', data);
+store.commit("products/SET_DATA_PRODUCT", data);
 const productList = ref(data);
 console.log(route.path);
 </script>
